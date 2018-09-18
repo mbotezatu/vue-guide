@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+
+        <!-- Declarative Rendering -->
+        <h2>Declarative Rendering</h2>
+
+        <div id="declarativeRendering">
+            {{ message }}
+        </div>
+
+        <div id="declarativeRendering2">
+            <!--
+                v-bind attribute is called a directive
+                Keep this element's "title" attribute up-to-date with the "message" property on the Vue instance
+            -->
+            <span v-bind:title="message">
+                Hover your mouse over me for a few seconds to see my dynamically bound title!
+            </span>
+        </div>
+
+        <hr>
+
+        <!-- Conditionals and Loops -->
+        <h2>Conditionals and Loops</h2>
+
+        <div id="conditional">
+            <span v-if="seen">Now you see me</span>
+        </div>
+
+        <div id="loop">
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <!-- Handling User Input-->
+        <h2>Handling User Input</h2>
+
+        <div id="userInput1">
+            <p>{{ message }}</p>
+            <!--
+                Use "v-on" directive to attach event listeners that invoke methods on our Vue instance
+            -->
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+
+        <div id="userInput2">
+            <p>{{ message }}</p>
+            <input v-model="message">
+        </div>
+
+        <hr>
+
+        <!-- Composing with Components -->
+        <h2>Composing with Components</h2>
+        <div id="composingWithComponents">
+            <ol>
+                <!--
+                    Now we provide each todo-item with the todo object it's representing,
+                    so that its content can be dynamic. We also need to provide each component with a "key",
+                    which will be explaned later.
+                -->
+                <todo-item 
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.key">
+                </todo-item>
+            </ol>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>
